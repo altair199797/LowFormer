@@ -7,12 +7,15 @@ This repository contains code to train and test our LowFormer model, as well as 
 
 ![Architecture Depiction](/assets_images/architecture.png "Architecture")
 
-Top1-acc and GPU Throughput Comparison             | Effect of Input Resolution on GPU Latency 
-:-------------------------:|:-------------------------:
-![Throughput](/assets_images/introfigure.png "Throughput")  | <img src="assets_images/resscalinglat.png" width="850" height="200">
+
+<p float="left" >
+    
+  <img src="assets_images/introfigure.png" align="middle" width="275" />
+  <img src="assets_images/resscalinglat.png" align="middle" width="335" /> 
+</p>
 
 
- ![Throughput](/assets_images/resscalinglat.png "Resolution Scaling on GPU latency")
+
 
 ## Setup
 
