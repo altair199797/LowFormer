@@ -1,13 +1,13 @@
 # LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones
 This is the official repository for "LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones", which was accepted at [WACV2025](https://wacv2025.thecvf.com/).
 
-Authors: Moritz Nottebaum, [Matteo Dunnhofer](https://scholar.google.de/citations?user=GIhkF8UAAAAJ&hl=de&oi=ao), [Christian Micheloni](https://scholar.google.de/citations?user=Gbnq0F8AAAAJ&hl=de&oi=ao)
+Authors: [Moritz Nottebaum](https://scholar.google.de/citations?user=y7paI7EAAAAJ&hl=de), [Matteo Dunnhofer](https://scholar.google.de/citations?user=GIhkF8UAAAAJ&hl=de&oi=ao) and [Christian Micheloni](https://scholar.google.de/citations?user=Gbnq0F8AAAAJ&hl=de&oi=ao)
 
 This repository contains code to train and test our LowFormer model, as well as to benchmark its speed. We also feature the base implementation of several backbones published in the recent years, as well as means to benchmark their execution time.
 
 ![Architecture Depiction](/assets_images/architecture.png "Architecture")
 
-GPU Throughput and Top1-accuracy comparison (left), as well as effect of input resolution on GPU latency.
+GPU Throughput and Top1-accuracy comparison (left), as well as effect of input resolution on GPU latency (right).
 <p align="middle" >
     
   <img src="assets_images/introfigure.png" align="middle" width="275" />
@@ -34,7 +34,7 @@ pip install -r requirements.txt
 ### Dataset Setup
 You have to download [ImageNet-1K](https://www.image-net.org/) and set the variable `data_dir` in `configs/cls/imagenet/default.yaml` for training on imagenet.
 
-If you want to evaluate and benchmark the speed you have to set `--path` in `eval_cls_model.py` in the argument parser at the beginning of the `main()` method or during execution of this file.
+If you want to evaluate and benchmark the latency of throughput you have to set `--path` in `eval_cls_model.py` in the argument parser at the beginning of the `main()` method or during execution of `eval_cls_model.py`.
 
 ## Training
 
@@ -74,7 +74,7 @@ In order to simulate a bigger batch size, there is a parameter in the configs ca
 For testing and speed analysis `eval_cls_model.py` can be used. 
 We also feature a vast library of popular backbone architectures. We adapted their code such that they can be converted to torchscript and onnx for speed measurement. For a list of all featured architectures look at `featured_models.txt`, containing one example for each architecture (architecture: fastvit, model: fastvit_t8 ; architecture: mobileone, model: mobileones3 ).
 
-### Evaluation on ImageNet
+### Evaluation on ImageNet-1K
 To evaluate a model given in `configs/cls/imagenet`, just run the following command:
 
 ```
@@ -95,7 +95,9 @@ You can benchmark latency with a torchscript converted version of the model and 
 python eval_cls_model.py b1 --image_size 224 --batch_size 1 --testrun --latency --optit --iterations 4000 --gpu 6 --optit --jobs 1
 ```
 
-You can also convert LowFormer-B1 to onnx and benchmark its latency:
+#### ONNX Benchmark
+
+You can also convert LowFormer-B1 to onnx and benchmark its latency (the onnx conversion is already implemented in `eval_cls_model.py`):
 
 ```
 python eval_cls_model.py b1 --image_size 224 --batch_size 1 --testrun --latency --onnxrun --iterations 4000 --gpu 6 --optit --jobs 1
@@ -113,12 +115,13 @@ python eval_cls_model.py b1 --image_size 224 --batch_size 1 --testrun --latency 
 
 
 ### Speed Measurement of popular Backbone Models
-When you append the argument `--other` followed by a string, you can run a lot of other backbones. Most of these backbones do not load their weights, so this functionality is purely for speed measurement (but could be extended for evaluation). The following command benchmarks MobileOne-S1 [1]:
+When you append the argument `--other` followed by a string, you can run a lot of other backbones. Most of these backbones do not load their weights, so this functionality is purely for speed measurement (but could be extended for evaluation). The following command benchmarks [MobileOne-S1](https://openaccess.thecvf.com/content/CVPR2023/papers/Vasu_MobileOne_An_Improved_One_Millisecond_Mobile_Backbone_CVPR_2023_paper.pdf) [1]:
 
 ```
 python eval_cls_model.py b1 --image_size 224 --batch_size 1 --testrun --latency --onnxrun --iterations 4000 --gpu 6 --optit --jobs 1 --other mobileones1
 ```
 
+> Please see below in acknowledgements for a link to the repository of MobileOne publication.
 
 ## Model Zoo
 
@@ -136,7 +139,7 @@ All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNr
 ### Easy
 
 To train a custom architecure simply adapt the `lowformer_cls_b1()` method in `lowformer/models/lowformer/cls.py`. Replace the method call `lowformer_backbone_b1(**kwargs)` (returns a pytorch model) with your own model. Then simply copy the `b1.yaml` config file and name it however you want.
-Then run the training command specified above, adapting the config file path.
+Then run the training command specified under section "Training", but adapting the config file path.
 
 ### Advanced
 You need to change the variable `name: b1` in a config file to your model name and adapt `model_dict` in  method `create_cls_model` in `lowformer/cls_model_zoo.py` accordingly, then add own methods in `lowformer/models/lowformer/cls.py` and `lowformer/models/lowformer/backbone.py` for your model. 
@@ -153,7 +156,7 @@ Here is a list to all their repositories:
 
 [FastViT](https://github.com/apple/ml-fastvit),
 [Efficientmodulation](https://github.com/ma-xu/EfficientMod),
-[MobileViG](https://github.com/SLDGroup/MobileViG/tree/main/models),
+[MobileViG](https://github.com/SLDGroup/MobileViG),
 [iFormer](https://github.com/sail-sg/iFormer),
 [MobileOne](https://github.com/apple/ml-mobileone),
 [FFNet](https://github.com/ysj9909/FFNet),
@@ -187,3 +190,5 @@ Special Thanks to [EfficientViT](https://openaccess.thecvf.com/content/ICCV2023/
   year={2023}
 }
 ```
+
+[1] Vasu, Pavan Kumar Anasosalu, et al. "Mobileone: An improved one millisecond mobile backbone." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2023.
