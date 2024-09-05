@@ -5,14 +5,14 @@ Authors: Moritz Nottebaum, [Matteo Dunnhofer](https://scholar.google.de/citation
 
 This repository contains code to train and test our LowFormer model, as well as to benchmark its speed. We also feature the base implementation of several backbones published in the recent years, as well as means to benchmark their execution time.
 
-![Architecture Depiction](/assets/architecture.png "Architecture")
+![Architecture Depiction](/assets_images/architecture.png "Architecture")
 
 Top1-acc and GPU Throughput Comparison             | Effect of Input Resolution on GPU Latency 
 :-------------------------:|:-------------------------:
-![Throughput](/assets/introfigure.png "Throughput")  | <img src="assets/resscalinglat.png" width="850" height="200">
+![Throughput](/assets_images/introfigure.png "Throughput")  | <img src="assets_images/resscalinglat.png" width="850" height="200">
 
 
- ![Throughput](/assets/resscalinglat.png "Resolution Scaling on GPU latency")
+ ![Throughput](/assets_images/resscalinglat.png "Resolution Scaling on GPU latency")
 
 ## Setup
 
