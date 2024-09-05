@@ -7,7 +7,7 @@ This repository contains code to train and test our LowFormer model, as well as 
 
 ![Architecture Depiction](/assets_images/architecture.png "Architecture")
 
-
+GPU Throughput and Top1-accuracy comparison (left), as well as effect of input resolution on GPU latency.
 <p align="middle" >
     
   <img src="assets_images/introfigure.png" align="middle" width="275" />
