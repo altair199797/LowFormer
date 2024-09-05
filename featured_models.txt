@@ -1,0 +1,17 @@
+fastvit_t8
+efficientmodxs
+mobilevigm
+iformers
+mobileones1
+ffnet1
+ghostnetv1.0
+efficientvitm5
+edgevitxs
+pvtv2b0
+fatb0
+mobilenetv3large
+coatnet0
+efficientformerv2s1
+resnet50
+shvit_s4
+repvit_m2_3

@@ -1,0 +1,21 @@
+MODEL:
+  TYPE: FAT
+  NAME: FAT_b3
+  FAT:
+    in_chans: 3
+    num_classes: 1000
+    embed_dims: [64, 128, 256, 512]
+    depths: [4, 4, 16, 4]
+    kernel_sizes: [3, 5, 7, 9]
+    num_heads: [2, 4, 8, 16]
+    window_sizes: [8, 4, 2, 1]
+    mlp_kernel_sizes: [5, 5, 5, 5]
+    mlp_ratios: [4, 4, 4, 4]
+    drop_path_rate: 0.15
+    use_checkpoint: False
+    
+DATA:
+  NUM_WORKERS: 10
+  BATCH_SIZE: 128
+  DATA_PATH: /data/imagenet
+  DATASET: imagenet

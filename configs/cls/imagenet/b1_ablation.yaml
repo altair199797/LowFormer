@@ -1,0 +1,28 @@
+data_provider:
+  rrc_config:
+    test_crop_ratio: 0.95
+  n_worker: 8
+  base_batch_size: 128
+
+net_config:
+  name: b1
+  dropout: 0
+  bb_convattention: True    # my attention
+  bb_convin2: True
+  grouping: 1
+  fastit: True
+  fastitv2: False
+  bigit: True
+  smallv2: True
+  model_mult: 1.0
+  just_unfused: True
+
+
+  head_dim_mul: False
+  actit: False
+  
+
+run_config:
+  n_epochs: 300
+  base_lr: 0.00025
+  # eval_image_size:

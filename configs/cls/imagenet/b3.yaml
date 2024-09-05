@@ -1,0 +1,54 @@
+data_provider:
+  rrc_config:
+    test_crop_ratio: 0.95
+  n_worker: 12
+  base_batch_size: 75 #75
+  data_aug:
+  - name: randaug
+    n: 2
+    m: 5
+  - name: erase
+    p: 0.2
+
+net_config:
+  name: b1
+  dropout: 0
+  bb_convattention: True    # my attention
+  bb_convin2: True
+  grouping: 1
+  fastit: True
+  fastitv2: False
+  model_mult: 1.0
+  huge_model: True
+  bigit: True
+  old_way_norm: False
+
+  head_dim_mul: False
+  actit: False
+
+
+run_config:
+  n_epochs: 300
+  base_lr: 0.000094
+  bsizemult: 4
+  mixup_config:
+    op:
+    - - mixup
+      - 0.2
+      - 1.0
+    - - cutmix
+      - 0.2
+      - 1.0
+  mesa:
+    thresh: 0.25
+    ratio: 2.0
+    
+backbone_drop:
+  name: droppath
+  drop_prob: 0.1
+  linear_decay: true
+  skip: 2
+
+
+
+

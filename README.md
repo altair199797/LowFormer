@@ -178,9 +178,9 @@ We hope you find our work useful. If you would like to acknowledge it in your pr
 ```
 Coming soon...
 ```
+           
 
-
-Special Thanks to [EfficientViT](https://openaccess.thecvf.com/content/ICCV2023/papers/Cai_EfficientViT_Lightweight_Multi-Scale_Attention_for_High-Resolution_Dense_Prediction_ICCV_2023_paper.pdf) for providing a baseline model.
+Special thanks to [EfficientViT](https://openaccess.thecvf.com/content/ICCV2023/papers/Cai_EfficientViT_Lightweight_Multi-Scale_Attention_for_High-Resolution_Dense_Prediction_ICCV_2023_paper.pdf) for providing a baseline model:
 ```
 @inproceedings{cai2023efficientvit,
   title={Efficientvit: Lightweight multi-scale attention for high-resolution dense prediction},
