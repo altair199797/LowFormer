@@ -1,5 +1,5 @@
 # LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones ([paper](https://www.arxiv.org/pdf/2409.03460))
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Framework](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white)](https://pytorch.org/)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Framework](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white)](https://pytorch.org/) [![arXiv](https://img.shields.io/badge/arXiv-2409.03460-b31b1b.svg)](https://www.arxiv.org/abs/2409.03460)
 
 This is the official repository for ["LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones"](https://www.arxiv.org/pdf/2409.03460), which was accepted at [WACV2025](https://wacv2025.thecvf.com/).
 
