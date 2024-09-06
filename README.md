@@ -1,5 +1,7 @@
-# LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones
-This is the official repository for "LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones", which was accepted at [WACV2025](https://wacv2025.thecvf.com/).
+# LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones ([paper](https://www.arxiv.org/pdf/2409.03460))
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Framework](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white)](https://pytorch.org/)
+
+This is the official repository for ["LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones"](https://www.arxiv.org/pdf/2409.03460), which was accepted at [WACV2025](https://wacv2025.thecvf.com/).
 
 Authors: [Moritz Nottebaum](https://scholar.google.de/citations?user=y7paI7EAAAAJ&hl=de), [Matteo Dunnhofer](https://scholar.google.de/citations?user=GIhkF8UAAAAJ&hl=de&oi=ao) and [Christian Micheloni](https://scholar.google.de/citations?user=Gbnq0F8AAAAJ&hl=de&oi=ao)
 
@@ -148,7 +150,7 @@ If you want to add layers of your own you should add them in `lowformer/models/n
 
 ## Acknowledgements
 
-We thank the contributors of the codebase of ["EfficientViT: Multi-Scale Linear Attention for High-Resolution Dense Prediction"](https://github.com/mit-han-lab/efficientvit), which was used as a base for this repository.
+We thank the contributors of the [codebase](https://github.com/mit-han-lab/efficientvit) and the  [paper](https://openaccess.thecvf.com/content/ICCV2023/papers/Cai_EfficientViT_Lightweight_Multi-Scale_Attention_for_High-Resolution_Dense_Prediction_ICCV_2023_paper.pdf) "EfficientViT: Multi-Scale Linear Attention for High-Resolution Dense Prediction" [2], which was used as a base for this repository.
 > Caveat: There are two EfficientViT papers, the other one is called "Efficientvit: Memory efficient vision transformer with cascaded group attention"
 
 We also thank the contributors of the openly available code of the many backbones architectures we feature in this repository. 
@@ -176,19 +178,19 @@ Here is a list to all their repositories:
 ## Citation
 We hope you find our work useful. If you would like to acknowledge it in your project, please use the following citation:
 ```
-Coming soon...
-```
-           
-
-Special thanks to [EfficientViT](https://openaccess.thecvf.com/content/ICCV2023/papers/Cai_EfficientViT_Lightweight_Multi-Scale_Attention_for_High-Resolution_Dense_Prediction_ICCV_2023_paper.pdf) for providing a baseline model:
-```
-@inproceedings{cai2023efficientvit,
-  title={Efficientvit: Lightweight multi-scale attention for high-resolution dense prediction},
-  author={Cai, Han and Li, Junyan and Hu, Muyan and Gan, Chuang and Han, Song},
-  booktitle={Proceedings of the IEEE/CVF International Conference on Computer Vision},
-  pages={17302--17313},
-  year={2023}
+@misc{nottebaum2024lowformerhardwareefficientdesign,
+      title={LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones}, 
+      author={Moritz Nottebaum and Matteo Dunnhofer and Christian Micheloni},
+      year={2024},
+      eprint={2409.03460},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2409.03460}, 
 }
 ```
+Papers mentioned in this README:
 
 [1] Vasu, Pavan Kumar Anasosalu, et al. "Mobileone: An improved one millisecond mobile backbone." Proceedings of the IEEE/CVF conference on computer vision and pattern recognition. 2023.
+
+[2] Cai, Han, et al. "Efficientvit: Lightweight multi-scale attention for high-resolution dense prediction." Proceedings of the IEEE/CVF International Conference on Computer Vision. 2023.
+
