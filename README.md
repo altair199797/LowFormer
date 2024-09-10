@@ -39,7 +39,7 @@ You have to download [ImageNet-1K](https://www.image-net.org/) and set the varia
 If you want to evaluate and benchmark the latency of throughput you have to set `--path` in `eval_cls_model.py` in the argument parser at the beginning of the `main()` method or during execution of `eval_cls_model.py`.
 
 
-## Just Use the pretrained Model
+## Just use the pretrained Model
 
 The script below is an example on how to just use the pretrained model from this repository:
 ``` 

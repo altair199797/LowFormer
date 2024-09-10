@@ -1,0 +1,14 @@
+config: configs/cls/imagenet/b1_testing7_other.yaml
+path: .exp/cls/imagenet/b1_testing7_other/
+gpu: null
+manual_seed: 0
+resume: true
+fp16: false
+timeit: false
+evalnow: true
+cpuspeed: false
+bench: false
+rand_init: trunc_normal@0.02
+last_gamma: 0
+auto_restart_thresh: 1.0
+save_freq: 1
