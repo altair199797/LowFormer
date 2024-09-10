@@ -38,6 +38,10 @@ You have to download [ImageNet-1K](https://www.image-net.org/) and set the varia
 
 If you want to evaluate and benchmark the latency of throughput you have to set `--path` in `eval_cls_model.py` in the argument parser at the beginning of the `main()` method or during execution of `eval_cls_model.py`.
 
+### Model Setup
+
+You can download the [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) and simply put the folder structure into the main folder (delete the existing exemplar `.exp` folder). [Download link again](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0).
+Checkpoints for LowFormer-B0, -B1, -B1.5 and -B3 are available.
 
 ## Just use the pretrained Model
 
