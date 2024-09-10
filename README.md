@@ -68,7 +68,7 @@ out = model(inp) # -> [5,1000]
 To run on one GPU, specify the GPU-id with `CUDA_VISIBLE_DEVICES` and execute the following command:
 
 ```
-CUDA_VISIBLE_DEVICES=0 torchrun --nnodes 1 
+CUDA_VISIBLE_DEVICES=0 torchrun --nnodes 1 \
 --nproc_per_node=1  --rdzv-endpoint localhost:29411 \
 train_cls_model.py configs/cls/imagenet/b1_alternative.yaml  \
     --data_provider.image_size "[128,160,192,224]"   \
@@ -81,7 +81,7 @@ train_cls_model.py configs/cls/imagenet/b1_alternative.yaml  \
 To run on 8 GPUs, just run the following command:
 
 ```
-CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nnodes 1 
+CUDA_VISIBLE_DEVICES=0,1,2,3,4,5,6,7 torchrun --nnodes 1 \
 --nproc_per_node=8  --rdzv-endpoint localhost:29411 \
 train_cls_model.py configs/cls/imagenet/b1_alternative.yaml  \
     --data_provider.image_size "[128,160,192,224]"   \
