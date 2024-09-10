@@ -2,13 +2,13 @@
 .vscode
 __pycache__/
 .dev/
-.exp/
 *.ptl
 *.onnx
 *.ts
 *.tflite
 *.pb
 *.pt
+*.pth
 temp_data/
 coco/
 MY_NOTES.md
@@ -22,3 +22,4 @@ WImagenet21k/
 converted_models/
 Wonnxmodels/
 temp.txt
+temp.py

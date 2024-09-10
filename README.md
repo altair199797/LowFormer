@@ -34,9 +34,28 @@ Install requirements from requirements.txt:
 pip install -r requirements.txt
 ```
 ### Dataset Setup
-You have to download [ImageNet-1K](https://www.image-net.org/) and set the variable `data_dir` in `configs/cls/imagenet/default.yaml` for training on imagenet.
+You have to download [ImageNet-1K](https://www.image-net.org/) and set the variable `data_dir` in `configs/cls/imagenet/default.yaml` for training and testing on ImageNet-1K.
 
 If you want to evaluate and benchmark the latency of throughput you have to set `--path` in `eval_cls_model.py` in the argument parser at the beginning of the `main()` method or during execution of `eval_cls_model.py`.
+
+
+## Just Use the pretrained Model
+
+The script below is an example on how to just use the pretrained model from this repository:
+``` 
+import torch
+from get_model import get_lowformer
+
+config_path = "configs/cls/imagenet/b1.yaml"
+checkpoint_path = ".exp/cls/imagenet/b1/checkpoint/evalmodel.pt"
+
+model = get_lowformer(config_path, checkpoint_path)
+
+inp = torch.randn(5,3,224,224)
+out = model(inp) # -> [5,1000]
+
+```
+
 
 ## Training
 

@@ -85,15 +85,15 @@ class LowFormerCls(nn.Module):
         self.backbone = backbone
         self.head = head
 
-        self.quant = torch.ao.quantization.QuantStub()
-        self.dequant = torch.ao.quantization.DeQuantStub()
+        # self.quant = torch.ao.quantization.QuantStub()
+        # self.dequant = torch.ao.quantization.DeQuantStub()
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        x = self.quant(x)
+        # x = self.quant(x)
         feed_dict = self.backbone(x)
         output = self.head(feed_dict)
         
-        self.dequant(output)
+        # self.dequant(output)
         return output
 
 
