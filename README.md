@@ -157,7 +157,7 @@ python eval_cls_model.py b1 --image_size 224 --batch_size 1 --testrun --latency 
 | LowFormer-B1.5    |  2739    | 0.66  | 33.9  | 2573  |  81.2 | 
 | LowFormer-B3      |  1162    | 1.55  | 57.1  | 6098  | 83.6  | 
 
-All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) are downloadable and already present in the required folder structure. Simply put the downloaded folder structure into the main directory.
+All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) are downloadable and already present in the required folder structure. Simply put the downloaded folder structure into the main directory. Please refer to our [paper](https://www.arxiv.org/pdf/2409.03460) for more information.
 
 ## Train your own models
 
