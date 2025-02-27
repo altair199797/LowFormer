@@ -1,0 +1,198 @@
+LowFormerCls(
+  (backbone): LowFormerBackbone(
+    (input_stem): OpSequential(
+      (op_list): ModuleList(
+        (0): ConvLayer(
+          (conv): Conv2d(3, 16, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+          (norm): BatchNorm2d(16, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+          (act): Hardswish()
+        )
+      )
+    )
+    (stages): ModuleList(
+      (0): OpSequential(
+        (op_list): ModuleList(
+          (0): ResidualBlock(
+            (main): FusedMBConv(
+              (spatial_conv): ConvLayer(
+                (conv): Conv2d(16, 96, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+                (norm): BatchNorm2d(96, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (act): Hardswish()
+              )
+              (point_conv): ConvLayer(
+                (conv): Conv2d(96, 32, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (norm): BatchNorm2d(32, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+          )
+        )
+      )
+      (1): OpSequential(
+        (op_list): ModuleList(
+          (0): ResidualBlock(
+            (main): FusedMBConv(
+              (spatial_conv): ConvLayer(
+                (conv): Conv2d(32, 192, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+                (norm): BatchNorm2d(192, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (act): Hardswish()
+              )
+              (point_conv): ConvLayer(
+                (conv): Conv2d(192, 64, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (norm): BatchNorm2d(64, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+          )
+        )
+      )
+      (2): OpSequential(
+        (op_list): ModuleList(
+          (0): ResidualBlock(
+            (main): FusedMBConv(
+              (spatial_conv): ConvLayer(
+                (conv): Conv2d(64, 384, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+                (norm): BatchNorm2d(384, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (act): Hardswish()
+              )
+              (point_conv): ConvLayer(
+                (conv): Conv2d(384, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+          )
+          (1-5): 5 x LowFormerBlock(
+            (total): Sequential(
+              (0): Sequential(
+                (0): ResidualBlock(
+                  (main): Sequential(
+                    (0): GroupNorm(1, 128, eps=1e-05, affine=True)
+                    (1): ConvAttention(
+                      (conv_proj): Sequential(
+                        (0): Conv2d(128, 128, kernel_size=(5, 5), stride=(2, 2), padding=(2, 2), groups=128, bias=False)
+                        (1): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                      )
+                      (pwise): Sequential(
+                        (0): Conv2d(128, 192, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                      )
+                      (sda): SDALayer()
+                      (o_proj): Identity()
+                      (upsampling): ConvTranspose2d(64, 128, kernel_size=(4, 4), stride=(2, 2), padding=(1, 1))
+                    )
+                  )
+                  (shortcut): IdentityLayer()
+                )
+                (1): ResidualBlock(
+                  (main): Sequential(
+                    (0): GroupNorm(1, 128, eps=1e-05, affine=True)
+                    (1): Conv2d(128, 512, kernel_size=(1, 1), stride=(1, 1))
+                    (2): GELU(approximate='none')
+                    (3): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (shortcut): IdentityLayer()
+                )
+              )
+              (1): ResidualBlock(
+                (main): FusedMBConv(
+                  (spatial_conv): ConvLayer(
+                    (conv): Conv2d(128, 512, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                    (norm): BatchNorm2d(512, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                    (act): Hardswish()
+                  )
+                  (point_conv): ConvLayer(
+                    (conv): Conv2d(512, 128, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                    (norm): BatchNorm2d(128, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                  )
+                )
+                (shortcut): IdentityLayer()
+              )
+            )
+          )
+        )
+      )
+      (3): OpSequential(
+        (op_list): ModuleList(
+          (0): ResidualBlock(
+            (main): FusedMBConv(
+              (spatial_conv): ConvLayer(
+                (conv): Conv2d(128, 768, kernel_size=(3, 3), stride=(2, 2), padding=(1, 1), bias=False)
+                (norm): BatchNorm2d(768, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                (act): Hardswish()
+              )
+              (point_conv): ConvLayer(
+                (conv): Conv2d(768, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                (norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+              )
+            )
+          )
+          (1-5): 5 x LowFormerBlock(
+            (total): Sequential(
+              (0): Sequential(
+                (0): ResidualBlock(
+                  (main): Sequential(
+                    (0): GroupNorm(1, 256, eps=1e-05, affine=True)
+                    (1): ConvAttention(
+                      (conv_proj): Sequential(
+                        (0): Conv2d(256, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=256, bias=False)
+                        (1): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                      )
+                      (pwise): Sequential(
+                        (0): Conv2d(256, 384, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                      )
+                      (sda): SDALayer()
+                      (o_proj): Identity()
+                      (upsampling): ConvTranspose2d(128, 256, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1))
+                    )
+                  )
+                  (shortcut): IdentityLayer()
+                )
+                (1): ResidualBlock(
+                  (main): Sequential(
+                    (0): GroupNorm(1, 256, eps=1e-05, affine=True)
+                    (1): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+                    (2): GELU(approximate='none')
+                    (3): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1))
+                  )
+                  (shortcut): IdentityLayer()
+                )
+              )
+              (1): ResidualBlock(
+                (main): MBConv(
+                  (inverted_conv): ConvLayer(
+                    (conv): Conv2d(256, 1024, kernel_size=(1, 1), stride=(1, 1))
+                    (act): Hardswish()
+                  )
+                  (depth_conv): ConvLayer(
+                    (conv): Conv2d(1024, 1024, kernel_size=(3, 3), stride=(1, 1), padding=(1, 1), groups=1024)
+                    (act): Hardswish()
+                  )
+                  (point_conv): ConvLayer(
+                    (conv): Conv2d(1024, 256, kernel_size=(1, 1), stride=(1, 1), bias=False)
+                    (norm): BatchNorm2d(256, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+                  )
+                )
+                (shortcut): IdentityLayer()
+              )
+            )
+          )
+        )
+      )
+    )
+  )
+  (head): ClsHead(
+    (op_list): ModuleList(
+      (0): ConvLayer(
+        (conv): Conv2d(256, 1536, kernel_size=(1, 1), stride=(1, 1), bias=False)
+        (norm): BatchNorm2d(1536, eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
+        (act): Hardswish()
+      )
+      (1): AdaptiveAvgPool2d(output_size=1)
+      (2): LinearLayer(
+        (linear): Linear(in_features=1536, out_features=1600, bias=False)
+        (norm): LayerNorm((1600,), eps=1e-05, elementwise_affine=True)
+        (act): Hardswish()
+      )
+      (3): LinearLayer(
+        (linear): Linear(in_features=1600, out_features=1000, bias=True)
+      )
+    )
+  )
+)

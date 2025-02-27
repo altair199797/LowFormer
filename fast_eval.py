@@ -44,25 +44,22 @@ def accuracy(output: torch.Tensor, target: torch.Tensor, topk=(1,)) -> list[torc
     return res
 
 
-def imagenet_eval():
-    # Params
-    path = os.path.join("..","datasets","val")
+def imagenet_eval(model):
+    # ImageNet path
+    imagenet_path = os.path.join("..","datasets","val")
     image_size = 224
-    batch_size = 200
-    modelname = "b3"
-    # Model
-    
-    from lowformer_model import get_lowformer, get_model_by_name
-    model = get_model_by_name(modelname)
-    model.eval()
+    batch_size = 50
+   
+   
 
-    model(torch.randn(1,3,224,224))
+    model.eval()
+    model(torch.randn(1,3,224,224)) # sanity test
     model.cuda()
 
     # Data loading
     data_loader = torch.utils.data.DataLoader(
         datasets.ImageFolder(
-            path,
+            imagenet_path,
             transforms.Compose(
                 [
                     transforms.Resize(
@@ -110,5 +107,11 @@ def imagenet_eval():
     print(f"Top1 Acc={top1.avg:.3f}, Top5 Acc={top5.avg:.3f}")
 
 
+def lowformer_imagenet_eval(modelname):
+    from lowformer_model import get_lowformer, get_model_by_name
+    model = get_model_by_name(modelname)
+    imagenet_eval(model)
+
+
 if __name__ == "__main__":
-    imagenet_eval()
+    lowformer_imagenet_eval("b3")

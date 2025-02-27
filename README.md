@@ -18,7 +18,10 @@ GPU Throughput and Top1-accuracy comparison (left), as well as effect of input r
 
 
 
-
+## Changelog
+- 28.02.2025: 
+  -  added ``lowformer_model.py`` as standalone model class
+  - added ``fast_eval.py`` for simplified ImageNet evaluation
 ## Setup
 
 ### Install
@@ -26,39 +29,53 @@ To run the code follow these steps.
 
 Set up a conda environment and activate it:
 ```
-conda create --name lowformer
+conda create --name lowformer python=3.11
 conda activate lowformer
 ```
 Install requirements from requirements.txt:
 ```
 pip install -r requirements.txt
 ```
-### Dataset Setup
+### Dataset Setup (optional)
 You have to download [ImageNet-1K](https://www.image-net.org/) and set the variable `data_dir` in `configs/cls/imagenet/default.yaml` for training and testing on ImageNet-1K.
 
 If you want to evaluate and benchmark the latency of throughput you have to set `--path` in `eval_cls_model.py` in the argument parser at the beginning of the `main()` method or during execution of `eval_cls_model.py`.
 
-### Model Setup
+### Model Setup (optional)
 
 You can download the [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) and simply put the folder structure into the main folder (delete the existing exemplar `.exp` folder). [Download link again](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0).
 Checkpoints for LowFormer-B0, -B1, -B1.5 and -B3 are available.
 
-## Just use the pretrained Model
+
+## Just use the pretrained Model [updated]
 
 The script below is an example on how to just use the pretrained model from this repository:
 ``` 
 import torch
-from get_model import get_lowformer
+from lowformer_model import get_lowformer_b0
 
-config_path = "configs/cls/imagenet/b1.yaml"
-checkpoint_path = ".exp/cls/imagenet/b1/checkpoint/evalmodel.pt"
-
-model = get_lowformer(config_path, checkpoint_path)
+model = get_lowformer_b0(pretrained=True)
 
 inp = torch.randn(5,3,224,224)
 out = model(inp) # -> [5,1000]
 
 ```
+You'll have to download the checkpoints [here](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0), if you want to use the pretrained version.
+
+## Simplified ImageNet evaluation
+You can use ``imagenet_eval()`` function in ``fast_eval.py``  to evaluate models on the ImageNet validation set. 
+
+````
+from fast_eval import imagenet_eval
+
+your_model = get_some_model_function()
+imagenet_eval(your_model) # prints result
+
+````
+(you do have to set the ``imagenet_path`` variable however in ``fast_eval.py``)
+
+With ``lowformer_imagenet_eval(modelname)``, you can very easily evaluate all LowFormer models,
+where ``modelname`` is element of {"b0","b1","b15","b3"}.
 
 
 ## Training
