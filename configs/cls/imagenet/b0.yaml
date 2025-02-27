@@ -6,7 +6,7 @@ data_provider:
   
 
 net_config:
-  name: b1
+  name: b0
   dropout: 0
   bb_convattention: True    # my attention
   bb_convin2: True

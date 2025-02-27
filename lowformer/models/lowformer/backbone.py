@@ -311,7 +311,6 @@ def efficientvit_backbone_b0(**kwargs) -> LowFormerBackbone:
 
 
 ## Main method to build the different versions of the model.
-
 def lowformer_backbone_b1(**kwargs) -> LowFormerBackbone:
     # print(build_kwargs_from_config(kwargs, LowFormerBackbone))
     # multiply channels and depth!
