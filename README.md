@@ -20,8 +20,43 @@ GPU Throughput and Top1-accuracy comparison (left), as well as effect of input r
 
 ## Changelog
 - 28.02.2025: 
-  -  added ``lowformer_model.py`` as standalone model class
+  -  added ``lowformer_model.py`` as standalone file
   - added ``fast_eval.py`` for simplified ImageNet evaluation
+  - refined structure of README.MD
+
+## Model Zoo
+
+| Model              | GPU Throughput | GPU Latency | params | MACs | top1 acc | 
+| :---------------- | :------: | ----: | ----: | ----: | ----: | 
+| LowFormer-B0      |   5988   | 0.3   | 14.1  | 944   | 78.4  | 
+| LowFormer-B1      |   4237   | 0.43  | 17.9  | 1410  | 79.9  | 
+| LowFormer-B1.5    |  2739    | 0.66  | 33.9  | 2573  |  81.2 | 
+| LowFormer-B3      |  1162    | 1.55  | 57.1  | 6098  | 83.6  | 
+
+All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) are downloadable and already present in the required folder structure. Simply put the downloaded folder structure into the main directory. Please refer to our [paper](https://www.arxiv.org/pdf/2409.03460) for more information.
+
+
+## Just use the pretrained Model [updated]
+The ``lowformer_model.py`` file is a standalone file and does not include the dependencies of the repository anymore.
+
+The script below is an example on how to use the ``lowformer_model.py`` file to get any LowFormer model:
+``` 
+import torch
+from lowformer_model import get_lowformer_b0
+
+# model = get_lowformer_b0(pretrained=True)
+# model = get_lowformer_b1(pretrained=True)
+# model = get_lowformer_b15(pretrained=True)
+model = get_lowformer_b3(pretrained=True)
+
+
+inp = torch.randn(5,3,224,224)
+out = model(inp) # -> [5,1000]
+
+```
+You'll have to download the checkpoints [here](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0), if you want to use the pretrained version.
+
+
 ## Setup
 
 ### Install
@@ -47,20 +82,7 @@ You can download the [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpd
 Checkpoints for LowFormer-B0, -B1, -B1.5 and -B3 are available.
 
 
-## Just use the pretrained Model [updated]
 
-The script below is an example on how to just use the pretrained model from this repository:
-``` 
-import torch
-from lowformer_model import get_lowformer_b0
-
-model = get_lowformer_b0(pretrained=True)
-
-inp = torch.randn(5,3,224,224)
-out = model(inp) # -> [5,1000]
-
-```
-You'll have to download the checkpoints [here](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0), if you want to use the pretrained version.
 
 ## Simplified ImageNet evaluation
 You can use ``imagenet_eval()`` function in ``fast_eval.py``  to evaluate models on the ImageNet validation set. 
@@ -165,16 +187,6 @@ python eval_cls_model.py b1 --image_size 224 --batch_size 1 --testrun --latency 
 
 > Please see below in acknowledgements for a link to the repository of MobileOne publication.
 
-## Model Zoo
-
-| Model              | GPU Throughput | GPU Latency | params | MACs | top1 acc | 
-| :---------------- | :------: | ----: | ----: | ----: | ----: | 
-| LowFormer-B0      |   5988   | 0.3   | 14.1  | 944   | 78.4  | 
-| LowFormer-B1      |   4237   | 0.43  | 17.9  | 1410  | 79.9  | 
-| LowFormer-B1.5    |  2739    | 0.66  | 33.9  | 2573  |  81.2 | 
-| LowFormer-B3      |  1162    | 1.55  | 57.1  | 6098  | 83.6  | 
-
-All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) are downloadable and already present in the required folder structure. Simply put the downloaded folder structure into the main directory. Please refer to our [paper](https://www.arxiv.org/pdf/2409.03460) for more information.
 
 ## Train your own models
 

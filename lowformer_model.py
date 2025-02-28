@@ -5,8 +5,8 @@ import torch
 
 import torch.nn.functional as F
 import torch.nn as nn
-
 from functools import partial
+
 
 class SafeLoaderWithTuple(yaml.SafeLoader):
     """A yaml safe loader with python tuple loading capabilities."""
