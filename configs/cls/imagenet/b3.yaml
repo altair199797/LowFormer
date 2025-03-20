@@ -11,7 +11,7 @@ data_provider:
     p: 0.2
 
 net_config:
-  name: b1
+  name: b3
   dropout: 0
   bb_convattention: True    # my attention
   bb_convin2: True
