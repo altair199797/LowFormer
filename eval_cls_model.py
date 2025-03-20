@@ -226,7 +226,7 @@ def testrun_it(proc, args, return_dict=None):
     if args.onnx:
         if proc == 0:
             if not os.path.exists(os.path.join("Wonnxmodels",modelname+".onnx")):
-                torch.onnx.export(model, inp, os.path.join("Wonnxmodels",modelname+".onnx"), do_constant_folding=True,opset_version=16, input_names=["input"], output_names=["output"], dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}})
+                torch.onnx.export(model, inp, os.path.join("Wonnxmodels",modelname+".onnx"), do_constant_folding=True,opset_version=args.opset, input_names=["input"], output_names=["output"], dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}})
                 print("ONNX MODEL CREATED SUCCESSFULLY!")
             else:
                 print("ALREADY EXISTS!")
@@ -557,6 +557,7 @@ def main():
     parser.add_argument("--total_exec", action="store_true", default=False)
     parser.add_argument("--multexec", type=int, default=1)
     parser.add_argument("--facbs", type=int, default=1)
+    parser.add_argument("--opset", type=int, default=16)
     
     
     args = parser.parse_args()
@@ -668,7 +669,7 @@ def main():
         # model.to(device)
         inp = torch.randn((args.batch_size, 3, args.image_size, args.image_size)).float()#.to(device).float()
         if not os.path.exists( os.path.join("Wonnxmodels",modelname+"_"+str(args.image_size)+".onnx")):
-            torch.onnx.export(model, inp, os.path.join("Wonnxmodels",modelname+"_"+str(args.image_size)+".onnx"), do_constant_folding=True,opset_version=16, input_names=["input"], output_names=["output"], dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}})
+            torch.onnx.export(model, inp, os.path.join("Wonnxmodels",modelname+"_"+str(args.image_size)+".onnx"), do_constant_folding=True,opset_version=args.opset, input_names=["input"], output_names=["output"], dynamic_axes={"input": {0: "batch_size"}, "output": {0: "batch_size"}})
     if args.latency: # model, args, iterations=100, batch_size=300, cpu=False
 
         if args.jobs > 1:
