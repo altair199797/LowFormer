@@ -230,14 +230,13 @@ Here is a list to all their repositories:
 ## Citation
 We hope you find our work useful. If you would like to acknowledge it in your project, please use the following citation:
 ```
-@misc{nottebaum2024lowformerhardwareefficientdesign,
-      title={LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones}, 
-      author={Moritz Nottebaum and Matteo Dunnhofer and Christian Micheloni},
-      year={2024},
-      eprint={2409.03460},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV},
-      url={https://arxiv.org/abs/2409.03460}, 
+@article{Nottebaum2024LowFormerHE,
+  title={LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones},
+  author={Moritz Nottebaum and Matteo Dunnhofer and Christian Micheloni},
+  journal={2025 IEEE/CVF Winter Conference on Applications of Computer Vision (WACV)},
+  year={2024},
+  pages={7008-7018},
+  url={https://api.semanticscholar.org/CorpusID:272423686}
 }
 ```
 Papers mentioned in this README:
