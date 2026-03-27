@@ -1,3 +1,3 @@
-#Beyond MACs: Hardware Efficient Architecture Design for Vision Backbones
+# Beyond MACs: Hardware Efficient Architecture Design for Vision Backbones
 
-Code incoming
+Code and models incoming.
