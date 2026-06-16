@@ -51,7 +51,7 @@ Each E-series model is derived from a B-series counterpart by selectively removi
 - **E2 (based on B3)**: The same attention-free and MLP-free design as E1, applied at the larger B3 capacity. Stage depths in the final two stages are likewise reduced from 6 to 4.
 - **E3 (based on B3)**: Identical macro structure to B3 (same widths and depths), with only the MLP blocks removed. Self-attention is retained, making E3 the highest-accuracy variant of the E-series.
 
-Pretrained checkpoints and detailed quantitative results are reported in the paper linked above. Checkpoints will be made available via the same [Dropbox link](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) as the base models once released.
+Pretrained checkpoints are available via the same [Dropbox link](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) as the base models. Detailed quantitative results are reported in the paper linked above.
 
 ---
 

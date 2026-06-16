@@ -21,6 +21,7 @@ GPU Throughput and Top1-accuracy comparison (left), as well as effect of input r
 
 
 ## Changelog
+- 2026: added journal extension "Beyond MACs" (IJCV 2026) with LowFormer-E1/E2/E3 edge GPU models
 - 28.02.2025: 
   -  added ``lowformer_model.py`` as standalone file
   - added ``fast_eval.py`` for simplified ImageNet evaluation
@@ -46,8 +47,6 @@ All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNr
 | LowFormer-E3 |   1566   | 3.6   | 25.0  | 3.6   | 5350  | 83.0  |
 
 Throughput in images/s (Nvidia A40); latencies in ms (GPU: TITAN RTX; TX2: Jetson TX2; iPhone: iPhone 13).
-
-GPU Throughput in images/s (Nvidia A40, batch 200); GPU Latency in ms (Nvidia TITAN RTX, batch 1, TorchScript). See the journal paper for full results including TX2 and mobile latency.
 
 
 ## Just use the pretrained Model [updated]
@@ -93,7 +92,7 @@ If you want to evaluate and benchmark the latency of throughput you have to set 
 ### Model Setup (optional)
 
 You can download the [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) and simply put the folder structure into the main folder (delete the existing exemplar `.exp` folder). [Download link again](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0).
-Checkpoints for LowFormer-B0, -B1, -B1.5 and -B3 are available.
+Checkpoints for LowFormer-B0, -B1, -B1.5, -B3, -E1, -E2 and -E3 are available.
 
 
 
