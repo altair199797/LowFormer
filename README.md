@@ -1,11 +1,13 @@
 # LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones ([paper](https://www.arxiv.org/pdf/2409.03460))
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Framework](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white)](https://pytorch.org/) [![arXiv](https://img.shields.io/badge/arXiv-2409.03460-b31b1b.svg)](https://www.arxiv.org/abs/2409.03460)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0) [![Framework](https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?&logo=PyTorch&logoColor=white)](https://pytorch.org/) [![arXiv](https://img.shields.io/badge/arXiv-2409.03460-b31b1b.svg)](https://www.arxiv.org/abs/2409.03460) [![IJCV](https://img.shields.io/badge/IJCV-2026-blue.svg)](https://doi.org/10.1007/s11263-026-02873-5)
 
 This is the official repository for ["LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones"](https://www.arxiv.org/pdf/2409.03460), which was accepted at [WACV2025](https://wacv2025.thecvf.com/).
 
 Authors: [Moritz Nottebaum](https://scholar.google.de/citations?user=y7paI7EAAAAJ&hl=de), [Matteo Dunnhofer](https://scholar.google.de/citations?user=GIhkF8UAAAAJ&hl=de&oi=ao) and [Christian Micheloni](https://scholar.google.de/citations?user=Gbnq0F8AAAAJ&hl=de&oi=ao)
 
 This repository contains code to train and test our LowFormer model, as well as to benchmark its speed. We also feature the base implementation of several backbones published in the recent years, as well as means to benchmark their execution time.
+
+> **Journal Extension** — This repository also contains the code and models for the journal article **"Beyond MACs: Hardware Efficient Architecture Design for Vision Backbones"** (*International Journal of Computer Vision*, 2026, [doi:10.1007/s11263-026-02873-5](https://doi.org/10.1007/s11263-026-02873-5)), which extends this work with a systematic hardware efficiency analysis and three new Edge GPU backbone variants (LowFormer-E1, E2, E3). See [Beyond_MACs_journal_extension.md](Beyond_MACs_journal_extension.md) for details.
 
 ![Architecture Depiction](/assets_images/architecture.png "Architecture")
 
@@ -33,7 +35,17 @@ GPU Throughput and Top1-accuracy comparison (left), as well as effect of input r
 | LowFormer-B1.5    |  2739    | 0.66  | 33.9  | 2573  |  81.2 | 
 | LowFormer-B3      |  1162    | 1.55  | 57.1  | 6098  | 83.6  | 
 
-All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) are downloadable and already present in the required folder structure. Simply put the downloaded folder structure into the main directory. Please refer to our [paper](https://www.arxiv.org/pdf/2409.03460) for more information.
+All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNrmZ44yYCeE6ILPA?rlkey=2gfcrsryep8hnipw831ufymms&dl=0) — including both B-series (base) and E-series (journal extension) models — are downloadable and already present in the required folder structure. Simply put the downloaded folder structure into the main directory. Please refer to our [paper](https://www.arxiv.org/pdf/2409.03460) for more information on the B-series, and to [Beyond_MACs_journal_extension.md](Beyond_MACs_journal_extension.md) for the E-series.
+
+**E-series (Edge GPU variants, from [journal extension](https://doi.org/10.1007/s11263-026-02873-5)):**
+
+| Model           | GPU Throughput | GPU Latency | params | MACs | top1 acc |
+| :-------------- | :------: | ----: | ----: | ----: | ----: |
+| LowFormer-E1    |   6337   | 1.0   | —     | 1350  | 78.8  |
+| LowFormer-E2    |   2070   | 1.5   | —     | 3800  | 81.6  |
+| LowFormer-E3    |   1566   | 3.6   | —     | 5350  | 83.0  |
+
+GPU Throughput in images/s (Nvidia A40, batch 200); GPU Latency in ms (Nvidia TITAN RTX, batch 1, TorchScript). See the journal paper for full results including TX2 and mobile latency.
 
 
 ## Just use the pretrained Model [updated]
@@ -229,7 +241,9 @@ Here is a list to all their repositories:
 
 ## Citation
 We hope you find our work useful. If you would like to acknowledge it in your project, please use the following citation:
-```
+
+**WACV 2025 conference paper:**
+```bibtex
 @article{Nottebaum2024LowFormerHE,
   title={LowFormer: Hardware Efficient Design for Convolutional Transformer Backbones},
   author={Moritz Nottebaum and Matteo Dunnhofer and Christian Micheloni},
@@ -237,6 +251,21 @@ We hope you find our work useful. If you would like to acknowledge it in your pr
   year={2024},
   pages={7008-7018},
   url={https://api.semanticscholar.org/CorpusID:272423686}
+}
+```
+
+**IJCV 2026 journal extension** (includes hardware efficiency analysis and LowFormer-E1/E2/E3):
+```bibtex
+@article{Nottebaum2026BeyondMACs,
+  author  = {Nottebaum, Moritz and Dunnhofer, Matteo and Micheloni, Christian},
+  title   = {Beyond {MAC}s: Hardware Efficient Architecture Design for Vision Backbones},
+  journal = {International Journal of Computer Vision},
+  year    = {2026},
+  volume  = {134},
+  number  = {6},
+  pages   = {295},
+  doi     = {10.1007/s11263-026-02873-5},
+  url     = {https://doi.org/10.1007/s11263-026-02873-5}
 }
 ```
 Papers mentioned in this README:

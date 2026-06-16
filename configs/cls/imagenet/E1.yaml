@@ -1,0 +1,37 @@
+data_provider:
+  rrc_config:
+    test_crop_ratio: 0.95
+  n_worker: 8
+  base_batch_size: 100
+  data_aug:
+    name: randaug
+    n: 2
+    m: 6
+
+net_config:
+  name: E1
+  dropout: 0
+  bb_convattention: True
+  bb_convin2: True
+  grouping: 1
+  fastit: True
+  bigit: True
+  bighead: True
+  noattention: True
+  mlpremoved: True
+
+run_config:
+  n_epochs: 300
+  base_lr: 0.0001
+  bsizemult: 2
+  mixup_config:
+    op:
+    - - mixup
+      - 0.3
+      - 1.0
+    - - cutmix
+      - 0.3
+      - 1.0
+
+backbone_drop:
+  drop_prob: 0.1

@@ -835,19 +835,31 @@ def lowformer_backbone_b1(**kwargs) -> LowFormerBackbone:
         if kwargs["name"] == "b1":
             width_list =  [16, 32, 64, 128, 256]
             depth_list = [0,1,1,5,5]
-        
+
         if kwargs["name"] == "b15":
             width_list =  [20, 40, 80, 160, 320]
             depth_list = [0,1,1,6,6]
-        
+
         if kwargs["name"] == "b2":
             width_list =  [24, 48, 96, 192, 384]
             depth_list = [0,0,0,6,6]
-        
+
         if kwargs["name"] == "b3":
             width_list =  [32, 64, 128, 256, 512]
             depth_list = [1,2,3,6,6]
-    
+
+        if kwargs["name"] == "E1":
+            width_list = [20, 40, 80, 160, 320]
+            depth_list = [0, 1, 1, 4, 4]
+
+        if kwargs["name"] == "E2":
+            width_list = [32, 64, 128, 256, 512]
+            depth_list = [1, 2, 3, 4, 4]
+
+        if kwargs["name"] == "E3":
+            width_list = [32, 64, 128, 256, 512]
+            depth_list = [1, 2, 3, 6, 6]
+
 
     backbone = LowFormerBackbone(
         width_list=width_list,
@@ -897,6 +909,9 @@ def get_lowformer(config_path="configs/cls/imagenet/b1.yaml", checkpoint_path=".
                 raise ValueError(f"Do not find the pretrained weight of {name}.")
             else:
                 weight = load_state_dict_from_file(checkpoint_path)
+                # Remap old-codebase head keys (head.opseq.* -> head.*) when present
+                if any(k.startswith("head.opseq.") for k in weight):
+                    weight = {k.replace("head.opseq.", "head."): v for k, v in weight.items()}
                 model.load_state_dict(weight)
     except Exception as e:
         print("Model weights could not be loaded!!!!!!!!!!!!!!!!!!!",e)
@@ -925,6 +940,16 @@ def get_lowformer_b2(pretrained=True):
 def get_lowformer_b3(pretrained=True):
     return get_model_by_name("b3", pretrained=pretrained)
     
+
+
+def get_lowformer_E1(pretrained=True):
+    return get_lowformer(config_path="configs/cls/imagenet/E1.yaml", checkpoint_path=".exp/cls/imagenet/E1/checkpoint/evalmodel.pt", pretrained=pretrained)
+
+def get_lowformer_E2(pretrained=True):
+    return get_lowformer(config_path="configs/cls/imagenet/E2.yaml", checkpoint_path=".exp/cls/imagenet/E2/checkpoint/evalmodel.pt", pretrained=pretrained)
+
+def get_lowformer_E3(pretrained=True):
+    return get_lowformer(config_path="configs/cls/imagenet/E3.yaml", checkpoint_path=".exp/cls/imagenet/E3/checkpoint/evalmodel.pt", pretrained=pretrained)
 
 
 def load_all_models():
