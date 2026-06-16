@@ -39,11 +39,11 @@ All [Checkpoints](https://www.dropbox.com/scl/fo/xtgv7fpae4vzpdu2ajsz1/ALuycdfNr
 
 **E-series (Edge GPU variants, from [journal extension](https://doi.org/10.1007/s11263-026-02873-5)):**
 
-| Model           | GPU Throughput | GPU Latency | params | MACs | top1 acc |
-| :-------------- | :------: | ----: | ----: | ----: | ----: |
-| LowFormer-E1    |   6337   | 1.0   | —     | 1350  | 78.8  |
-| LowFormer-E2    |   2070   | 1.5   | —     | 3800  | 81.6  |
-| LowFormer-E3    |   1566   | 3.6   | —     | 5350  | 83.0  |
+| Model           | GPU Throughput | GPU Latency | TX2 Latency | iPhone 13 Latency | MACs | top1 acc |
+| :-------------- | :------: | ----: | ----: | ----: | ----: | ----: |
+| LowFormer-E1    |   6337   | 1.0   | 6.2   | 1.7   | 1350  | 78.8  |
+| LowFormer-E2    |   2070   | 1.5   | 14.7  | 2.5   | 3800  | 81.6  |
+| LowFormer-E3    |   1566   | 3.6   | 25.0  | 3.6   | 5350  | 83.0  |
 
 GPU Throughput in images/s (Nvidia A40, batch 200); GPU Latency in ms (Nvidia TITAN RTX, batch 1, TorchScript). See the journal paper for full results including TX2 and mobile latency.
 
