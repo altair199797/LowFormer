@@ -767,8 +767,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python eval_cls_model.py b1_testing7_other --gpu 4 --batch_size 1 --image_size 224  --testrun --iterations 4000  --latency
-
-
-#  python eval_cls_model.py b1_testing10 --gpu 0  --batch_size 20 --image_size 224 --testrun --other custom1 --cpu
-
