@@ -7,6 +7,8 @@ Authors: [Moritz Nottebaum](https://scholar.google.de/citations?user=y7paI7EAAAA
 
 This repository contains code to train and test our LowFormer model, as well as to benchmark its speed. We also feature the base implementation of several backbones published in the recent years, as well as means to benchmark their execution time.
 
+> If you are interested in a CPU-optimized backbone, check out our [CPUBone](https://github.com/altair199797/CPUBone).
+
 > **Journal Extension** — This repository also contains the code and models for the journal article **"Beyond MACs: Hardware Efficient Architecture Design for Vision Backbones"** (*International Journal of Computer Vision*, 2026, [doi:10.1007/s11263-026-02873-5](https://doi.org/10.1007/s11263-026-02873-5)), which extends this work with a systematic hardware efficiency analysis and three new Edge GPU backbone variants (LowFormer-E1, E2, E3). See [Beyond_MACs_journal_extension.md](Beyond_MACs_journal_extension.md) for details.
 
 ![Architecture Depiction](/assets_images/architecture.png "Architecture")
